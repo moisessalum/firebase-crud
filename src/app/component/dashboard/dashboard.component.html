@@ -1,0 +1,61 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 text-center">
+                    <h5 class="text-center text-warning">Add User</h5>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
+                        <label for="name">Name</label>
+                      </div>
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username">
+                        <label for="username">Username</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+                        <label for="email">Email</label>
+                      </div>
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="phone">
+                        <label for="phone">Phone</label>
+                      </div>
+                      <button type="button" class="btn btn-outline-success" (click)="addUser()">Add User</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <h5 class="text-danger">User List</h5>
+            <div class="card p-3 shadow">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of usersList">
+                            <td>{{user.name}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>
+                                <button class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
