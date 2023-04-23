@@ -23,25 +23,26 @@ export class DashboardComponent {
   username: string = '';
   email: string = '';
   phone: string = '';
+  selectedUserId: string | null = '';
 
   constructor(private auth: AuthService, private data: DataService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    // this.getAllUsers();
+    this.getAllUsers();
   }
 
   getAllUsers(){
-    // this.data.listUsers().subscribe(res => {
-    //   this.usersList = res.map((e: any) => {
-    //     const data = e.payload.doc.data();
-    //     data.id = e.payload.doc.id;
-    //     return data;
-    //   })
-    // }, err => {
-    //   alert('Error')
-    // })
+    this.data.listUsers().subscribe(res => {
+      this.usersList = res.map((e: any) => {
+        const data = e.payload.doc.data();
+        data.id = e.payload.doc.id;
+        return data;
+      })
+    }, err => {
+      alert('Error')
+    })
   }
 
   resetForm() {
@@ -53,29 +54,39 @@ export class DashboardComponent {
   }
 
   addUser(){
-  //   if(this.name == '' || this.username == '' || this.phone == '' || this.email == '') {
-  //     alert('Fill all the parameters to add a user.')
-  //   }
+    if(this.name == '' || this.username == '' || this.phone == '' || this.email == '') {
+      alert('Fill all the parameters to add a user.')
+    }
 
-  //   this.userObj.id = '';
-  //   this.userObj.name = '';
-  //   this.userObj.username = '';
-  //   this.userObj.email = '';
-  //   this.userObj.phone = '';
+    this.userObj.id = this.id;
+    this.userObj.name = this.name;
+    this.userObj.username = this.username;
+    this.userObj.email = this.email;
+    this.userObj.phone = this.phone;
 
-  //   this.data.addUser(this.userObj);
+    if (this.id === '') {
+      this.data.addUser(this.userObj);
+    } else {
+      // this.updateUser();
+    }
 
-  //   this.resetForm();
+    this.data.addUser(this.userObj);
+
+    this.resetForm();
   }
 
-  updateUser(){
-
+  updateUser(user: User){
+    this.id = user.id;
+    this.name = user.name;
+    this.username = user.username;
+    this.email = user.email;
+    this.phone = user.phone;
   }
 
   deleteUser(user: User){
-    // if(window.confirm('Delete user?')){    
-    //   this.data.deleteUser(user);
-    // }
+    if(window.confirm('Delete user?')){    
+      this.data.deleteUser(user);
+    }
   }
 
 }
