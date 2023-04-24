@@ -57,7 +57,7 @@ export class DashboardComponent {
       alert('Fill all the parameters to add a user.')
     }
 
-    this.userObj.id = '';
+    this.userObj.id = this.id;
     this.userObj.name = this.name;
     this.userObj.username = this.username;
     this.userObj.email = this.email;
@@ -69,7 +69,25 @@ export class DashboardComponent {
   }
 
   updateUser(){
+    this.userObj.id = this.id;
+    this.userObj.name = this.name;
+    this.userObj.username = this.username;
+    this.userObj.email = this.email;
+    this.userObj.phone = this.phone;
 
+    this.data.updateUser(this.userObj);
+
+    this.resetForm();
+
+  }
+
+
+  editUser(user:User) {
+    this.id = user.id;
+    this.name = user.name;
+    this.username = user.username;
+    this.email = user.email;
+    this.phone = user.phone;
   }
 
   deleteUser(user: User){
