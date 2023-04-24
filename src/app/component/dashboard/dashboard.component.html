@@ -7,10 +7,6 @@
                     <h5 class="text-center text-warning">{{userObj.id ? 'Update User' : 'Add User'}}</h5>
                 </div>
                 <div class="col-md-3">
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="id">
-                    <label for="name">Id</label>
-                  </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
                         <label for="name">Name</label>
@@ -38,7 +34,6 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
@@ -48,7 +43,6 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let user of usersList">
-                            <td>{{user.id}}</td>
                             <td>{{user.name}}</td>
                             <td>{{user.username}}</td>
                             <td>{{user.email}}</td>
