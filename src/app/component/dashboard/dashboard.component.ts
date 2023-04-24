@@ -23,7 +23,6 @@ export class DashboardComponent {
   username: string = '';
   email: string = '';
   phone: string = '';
-  selectedUserId: string | null = '';
 
   constructor(private auth: AuthService, private data: DataService) {}
 
@@ -58,29 +57,19 @@ export class DashboardComponent {
       alert('Fill all the parameters to add a user.')
     }
 
-    this.userObj.id = this.id;
+    this.userObj.id = '';
     this.userObj.name = this.name;
     this.userObj.username = this.username;
     this.userObj.email = this.email;
     this.userObj.phone = this.phone;
-
-    if (this.id === '') {
-      this.data.addUser(this.userObj);
-    } else {
-      // this.updateUser();
-    }
 
     this.data.addUser(this.userObj);
 
     this.resetForm();
   }
 
-  updateUser(user: User){
-    this.id = user.id;
-    this.name = user.name;
-    this.username = user.username;
-    this.email = user.email;
-    this.phone = user.phone;
+  updateUser(){
+
   }
 
   deleteUser(user: User){
